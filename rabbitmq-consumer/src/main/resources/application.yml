@@ -1,0 +1,22 @@
+spring:
+  #rabbitmq消息队列配置信息
+  rabbitmq:
+    host: 172.16.20.165
+    port: 5672
+    username: o-message-program
+    password: o-message-program123!@#qwe
+    virtual-host: opnext-server
+    #配置发布消息确认回调
+    publisher-confirms: true
+server:
+  port: 8081
+
+
+
+
+
+
+
+
+
+
