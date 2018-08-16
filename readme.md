@@ -6,7 +6,8 @@
 rabbitmq-common：
 一个rabbitmq通用配置module
 主要是exchage 、queue 的定义和绑定。
-目前包括direct和topic类型消息。
+direct、topic 方式转换消息
+延迟消费消息
 
 rabbitmq-provider：
 消息生产者
