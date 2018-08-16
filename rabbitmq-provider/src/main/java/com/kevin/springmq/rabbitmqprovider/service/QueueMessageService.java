@@ -19,4 +19,13 @@ public interface QueueMessageService extends RabbitTemplate.ConfirmCallback {
      */
     void send(Object message, String exchange, String routingKey) throws Exception;
 
+    /**
+     * 发送延迟消息
+     *
+     * @param messageContent 消息内容
+     * @param exchange       队列交换
+     * @param routerKey      队列交换绑定的路由键
+     * @param delayTimes     延迟时长，单位：毫秒
+     */
+    void sendMessageTtl(Object messageContent, String exchange, String routerKey, final long delayTimes) throws Exception;
 }

@@ -22,6 +22,7 @@ public class MsgController {
 
     @Autowired
     private MsgService msgService;
+
     @ApiOperation(value = "发送 direct 消息", notes = "")
     @RequestMapping(value = "/msg-direct", method = RequestMethod.POST)
     public void addDirectMsg(MsgBean msgBean) throws Exception {
@@ -30,6 +31,7 @@ public class MsgController {
         log.info("进入到msg-direct接口 - 结束");
 
     }
+
     @ApiOperation(value = "发送 topic 消息", notes = "")
     @RequestMapping(value = "/msg-topic", method = RequestMethod.POST)
     public void addTopicMsg(MsgBean msgBean) throws Exception {
@@ -39,5 +41,14 @@ public class MsgController {
 
     }
 
+
+    @ApiOperation(value = "发送 延迟 消息", notes = "")
+    @RequestMapping(value = "/msg-ttl", method = RequestMethod.POST)
+    public void addMsgTTL(MsgBean msgBean) throws Exception {
+        log.info("进入到msg-ttl接口");
+        msgService.sendMsgTTL(msgBean, 10000);
+        log.info("进入到msg-ttl接口 - 结束");
+
+    }
 
 }

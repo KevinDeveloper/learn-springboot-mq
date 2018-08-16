@@ -2,12 +2,15 @@ package com.kevin.springmq.rabbitmqprovider.service;
 
 import com.kevin.springmq.rabbitmqcommon.enums.DirectExchangeEnum;
 import com.kevin.springmq.rabbitmqcommon.enums.DirectQueueEnum;
+import com.kevin.springmq.rabbitmqcommon.enums.MsgTtlQueueEnum;
 import com.kevin.springmq.rabbitmqcommon.enums.TopicExchangeEnum;
 import com.kevin.springmq.rabbitmqcommon.enums.TopicQueueEnum;
 import com.kevin.springmq.rabbitmqprovider.domin.MsgBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * @ClassName: UserService
@@ -47,6 +50,24 @@ public class MsgService {
         log.info("sendTopictMsg msgBean-----end");
 
         queueMessageService.send(msgBean.toString(), TopicExchangeEnum.TOPIC_MSG_EXCHANGE.getValue(), TopicQueueEnum.TOPIC_QUEUE_QUEUE_1.getRoutingKey());
+    }
+
+
+    /**
+     * 发送延迟消息
+     *
+     * @param msgBean
+     * @throws Exception
+     */
+    public void sendMsgTTL(MsgBean msgBean, long delayTimes) throws Exception {
+        log.info("sendMsgTTL msgBean-----start");
+        String msgContent = msgBean.toString() + ", 时间" + new Date();
+        log.info("msgContent={}", msgContent);
+
+        queueMessageService.sendMessageTtl(msgContent, MsgTtlQueueEnum.MESSAGE_TTL_QUEUE.getExchange(), MsgTtlQueueEnum.MESSAGE_TTL_QUEUE.getRouteKey(), delayTimes);
+        log.info("sendMsgTTL msgBean-----end");
+
+
     }
 
 }
