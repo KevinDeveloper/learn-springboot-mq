@@ -2,9 +2,10 @@ package com.kevin.springmq.rabbitmqprovider.service;
 
 import com.kevin.springmq.rabbitmqcommon.enums.DirectExchangeEnum;
 import com.kevin.springmq.rabbitmqcommon.enums.DirectQueueEnum;
+import com.kevin.springmq.rabbitmqcommon.enums.FanoutMqConstant;
 import com.kevin.springmq.rabbitmqcommon.enums.MsgTtlQueueEnum;
 import com.kevin.springmq.rabbitmqcommon.enums.TopicExchangeEnum;
-import com.kevin.springmq.rabbitmqcommon.enums.TopicQueueEnum;
+import com.kevin.springmq.rabbitmqcommon.enums.TopicRouteEnum;
 import com.kevin.springmq.rabbitmqprovider.domin.MsgBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,22 @@ public class MsgService {
         log.info("msgBean={}", msgBean.toString());
         log.info("sendTopictMsg msgBean-----end");
 
-        queueMessageService.send(msgBean.toString(), TopicExchangeEnum.TOPIC_MSG_EXCHANGE.getValue(), TopicQueueEnum.TOPIC_QUEUE_QUEUE_1.getRoutingKey());
+        queueMessageService.send(msgBean.toString(), TopicExchangeEnum.TOPIC_MSG_EXCHANGE.getValue(), TopicRouteEnum.TOPIC_MSG_ROUTE.getTopicRouteKey());
+    }
+
+
+    /**
+     * 发送fanout消息
+     *
+     * @param msgBean
+     * @throws Exception
+     */
+    public void sendFanoutMsg(MsgBean msgBean) throws Exception {
+        log.info("sendFanoutMsg msgBean-----start");
+        log.info("msgBean={}", msgBean.toString());
+        log.info("sendFanoutMsg msgBean-----end");
+        //getRouteKey是设置路由规则，由于是广播模式，这个规则会被抛弃，但是这个字段一定要写上
+        queueMessageService.send(msgBean.toString(), FanoutMqConstant.FANOUT_EXCHANGE_1, FanoutMqConstant.EMPTY_ROUTE_KEY);
     }
 
 

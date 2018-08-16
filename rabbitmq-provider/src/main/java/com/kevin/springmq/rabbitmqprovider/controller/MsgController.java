@@ -23,7 +23,7 @@ public class MsgController {
     @Autowired
     private MsgService msgService;
 
-    @ApiOperation(value = "发送 direct 消息", notes = "")
+    @ApiOperation(value = "发送 direct模式 消息", notes = "")
     @RequestMapping(value = "/msg-direct", method = RequestMethod.POST)
     public void addDirectMsg(MsgBean msgBean) throws Exception {
         log.info("进入到msg-direct接口");
@@ -32,12 +32,21 @@ public class MsgController {
 
     }
 
-    @ApiOperation(value = "发送 topic 消息", notes = "")
+    @ApiOperation(value = "发送 topic模式 消息", notes = "")
     @RequestMapping(value = "/msg-topic", method = RequestMethod.POST)
     public void addTopicMsg(MsgBean msgBean) throws Exception {
         log.info("进入到msg-topic接口");
         msgService.sendTopictMsg(msgBean);
         log.info("进入到msg-topic接口 - 结束");
+
+    }
+
+    @ApiOperation(value = "发送 Fanout模式 消息", notes = "")
+    @RequestMapping(value = "/msg-fanout", method = RequestMethod.POST)
+    public void addFanoutMsg(MsgBean msgBean) throws Exception {
+        log.info("进入到msg-fanout接口");
+        msgService.sendFanoutMsg(msgBean);
+        log.info("进入到msg-fanout接口 - 结束");
 
     }
 
