@@ -7,8 +7,11 @@ rabbitmq-common：
 一个rabbitmq通用配置module
 主要是exchage 、queue 的定义和绑定。
 三种转发模式的演示示例，加上消息的延迟消费
+
 DirectExchange：路由键方式转发消息。
+
 FanoutExchange：广播方式转发消息。
+
 TopicExchange：主题匹配方式转发消息。
 
 
