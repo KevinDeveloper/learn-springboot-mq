@@ -50,4 +50,29 @@ public class DirectQueueConfiguration {
         return BindingBuilder.bind(createDirectQueue()).to(directExchange()).with(DirectQueueEnum.DIRECT_QUEUE_QUEUE.getRoutingKey());
     }
 
+
+    //-------------------------------------------- rabbitmq rpc
+
+    /**
+     * 配置direct消息队列对象实例
+     * 并设置持久化队列
+     *
+     * @return
+     */
+    @Bean
+    public Queue createRPCQueue() {
+        return new Queue(DirectQueueEnum.DIRECT_QUEUE_QUEUE_RPC.getName(), true);
+    }
+
+    /**
+     * 将direct消息队列绑定到路由交换配置上并设置指定路由键进行转发
+     *
+     * @return
+     */
+    @Bean
+    public Binding bindingRPCQueue(DirectExchange directExchange, Queue createRPCQueue) {
+        return BindingBuilder.bind(createRPCQueue).to(directExchange).with(DirectQueueEnum.DIRECT_QUEUE_QUEUE_RPC.getRoutingKey());
+    }
+
+
 }

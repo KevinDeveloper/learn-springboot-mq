@@ -35,7 +35,6 @@ public class MsgService {
         log.info("sendDirectMsg msgBean-----start");
         log.info("msgBean={}", msgBean.toString());
         log.info("sendDirectMsg msgBean-----end");
-
         queueMessageService.send(msgBean.toString(), DirectExchangeEnum.DIRECT_MSG_EXCHANGE.getValue(), DirectQueueEnum.DIRECT_QUEUE_QUEUE.getRoutingKey());
     }
 
@@ -83,7 +82,19 @@ public class MsgService {
         queueMessageService.sendMessageTtl(msgContent, MsgTtlQueueEnum.MESSAGE_TTL_QUEUE.getExchange(), MsgTtlQueueEnum.MESSAGE_TTL_QUEUE.getRouteKey(), delayTimes);
         log.info("sendMsgTTL msgBean-----end");
 
+    }
 
+    /**
+     * 发现direct消息, 返回rpc执行结果
+     *
+     * @param msgValue
+     * @throws Exception
+     */
+    public Integer sendDirectMsgRPC(int msgValue) throws Exception {
+        log.info("sendDirectMsgRPC msgBean-----start");
+        log.info("msgBean={}", msgValue);
+        log.info("sendDirectMsgRPC msgBean-----end");
+        return queueMessageService.sendMsgRPC(msgValue, DirectExchangeEnum.DIRECT_MSG_EXCHANGE.getValue(), DirectQueueEnum.DIRECT_QUEUE_QUEUE_RPC.getRoutingKey());
     }
 
 }

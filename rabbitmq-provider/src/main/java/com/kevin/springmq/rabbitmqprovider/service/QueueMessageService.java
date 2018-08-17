@@ -28,4 +28,13 @@ public interface QueueMessageService extends RabbitTemplate.ConfirmCallback {
      * @param delayTimes     延迟时长，单位：毫秒
      */
     void sendMessageTtl(Object messageContent, String exchange, String routerKey, final long delayTimes) throws Exception;
+
+    /**
+     * 发送消息，rpc调用
+     * @param msgValue
+     * @param exchange
+     * @param routerKey
+     * @return
+     */
+    Integer sendMsgRPC(int msgValue, String exchange, String routerKey);
 }

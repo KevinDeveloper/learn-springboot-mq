@@ -60,4 +60,14 @@ public class MsgController {
 
     }
 
+    @ApiOperation(value = "发送 mq 消息, rpc调用 返回结果", notes = "")
+    @RequestMapping(value = "/msg-rpc", method = RequestMethod.POST)
+    public Integer addMsgRPC(int msgValue) throws Exception {
+        log.info("进入到msg-rpc接口");
+        Integer result = msgService.sendDirectMsgRPC(msgValue);
+        log.info("进入到msg-rpc接口 - 结束");
+        return result;
+
+    }
+
 }

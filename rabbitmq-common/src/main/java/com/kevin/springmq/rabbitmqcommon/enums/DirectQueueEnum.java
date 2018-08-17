@@ -13,7 +13,15 @@ public enum DirectQueueEnum {
     /**
      * direct消息枚举
      */
-    DIRECT_QUEUE_QUEUE("testmq.msg.direct.queue","testmq.msg.direct");
+    DIRECT_QUEUE_QUEUE("testmq.msg.direct.queue", "testmq.msg.direct"),
+
+
+    /**
+     * 测试rabbitmq 的实现rpc功能
+     */
+    DIRECT_QUEUE_QUEUE_RPC("testmq.msg.direct.queue.rpc","testmq.msg.direct.rpc");
+
+
     /**
      * 队列名称
      */

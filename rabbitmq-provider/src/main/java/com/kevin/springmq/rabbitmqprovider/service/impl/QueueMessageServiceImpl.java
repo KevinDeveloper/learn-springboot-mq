@@ -77,6 +77,26 @@ public class QueueMessageServiceImpl implements QueueMessageService {
         }
     }
 
+    /**
+     * 测试rpc调用
+     *
+     * @param msgValue
+     * @param exchange
+     * @param routerKey
+     * @return
+     */
+    @Override
+    public Integer sendMsgRPC(int msgValue, String exchange, String routerKey) {
+        //设置回调为当前类对象
+        rabbitTemplate.setConfirmCallback(this);
+        //构建回调id为uuid
+        CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());
+        //发送消息到消息队列
+        Integer result = (Integer) rabbitTemplate.convertSendAndReceive(exchange, routerKey, msgValue, correlationId);
+        log.info("sendMsgRPC, rpc result ={}", result);
+        return result;
+    }
+
 
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
