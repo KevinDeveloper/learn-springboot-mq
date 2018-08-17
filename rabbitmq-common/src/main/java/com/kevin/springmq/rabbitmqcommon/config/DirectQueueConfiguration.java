@@ -7,6 +7,7 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -70,7 +71,7 @@ public class DirectQueueConfiguration {
      * @return
      */
     @Bean
-    public Binding bindingRPCQueue(DirectExchange directExchange, Queue createRPCQueue) {
+    public Binding bindingRPCQueue(@Qualifier("directExchange") DirectExchange directExchange, Queue createRPCQueue) {
         return BindingBuilder.bind(createRPCQueue).to(directExchange).with(DirectQueueEnum.DIRECT_QUEUE_QUEUE_RPC.getRoutingKey());
     }
 

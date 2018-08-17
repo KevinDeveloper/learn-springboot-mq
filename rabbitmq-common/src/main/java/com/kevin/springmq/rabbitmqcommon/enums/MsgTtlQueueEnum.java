@@ -13,11 +13,11 @@ public enum MsgTtlQueueEnum {
     /**
      * 消息通知队列
      */
-    MESSAGE_QUEUE("testmessage.center.direct", "testmessage.center.create", "testmessage.center.create"),
+    MESSAGE_QUEUE("testmessage.center.direct", "testmessage.center.create", "testmessage.center.create.route"),
     /**
      * 消息通知ttl队列
      */
-    MESSAGE_TTL_QUEUE("testmessage.center.topic.ttl", "testmessage.center.create.ttl", "testmessage.center.create.ttl");
+    MESSAGE_TTL_QUEUE("testmessage.center.direct.ttl", "testmessage.center.create.ttl", "testmessage.center.route.ttl");
     /**
      * 交换名称
      */

@@ -77,8 +77,8 @@ public class TopicQueueConfiguration {
      * @return
      */
     @Bean
-    public Binding bindingTopicQueue2() {
-        Binding binding = BindingBuilder.bind(createTopicQueue2()).to(topicExchange()).with(TopicQueueEnum.TOPIC_QUEUE_QUEUE_2.getRoutingKey());
+    public Binding bindingTopicQueue2(TopicExchange topicExchange, Queue createTopicQueue2) {
+        Binding binding = BindingBuilder.bind(createTopicQueue2).to(topicExchange).with(TopicQueueEnum.TOPIC_QUEUE_QUEUE_2.getRoutingKey());
         log.info("绑定 TopicQueue2 到topic 交换成功");
         return binding;
     }

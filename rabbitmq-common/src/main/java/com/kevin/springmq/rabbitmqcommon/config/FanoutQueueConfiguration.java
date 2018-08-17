@@ -35,13 +35,13 @@ public class FanoutQueueConfiguration {
     }
 
     @Bean
-    public Binding bindingQueueOne() {
-        return BindingBuilder.bind(createQueueOne()).to(createFanoutExchange());
+    public Binding bindingQueueOne(FanoutExchange createFanoutExchange, Queue createQueueOne) {
+        return BindingBuilder.bind(createQueueOne).to(createFanoutExchange);
     }
 
     @Bean
-    public Binding bindingQueueTwo() {
-        return BindingBuilder.bind(createQueueTwo()).to(createFanoutExchange());
+    public Binding bindingQueueTwo(FanoutExchange createFanoutExchange, Queue createQueueTwo) {
+        return BindingBuilder.bind(createQueueTwo).to(createFanoutExchange);
     }
 
 
