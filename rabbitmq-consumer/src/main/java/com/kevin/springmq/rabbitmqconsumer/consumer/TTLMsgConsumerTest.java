@@ -15,11 +15,13 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@RabbitListener(queues = "testmessage.center.create")
-//@RabbitListener(queues = "testmessage.center.create.ttl")
+
+
 public class TTLMsgConsumerTest {
 
     @RabbitHandler
+    @RabbitListener(queues = "testmessage.center.create")
+    //@RabbitListener(queues = "testmessage.center.create.ttl")
     public void execute(String msgBean) {
         log.info("TTLMsgConsumerTest 有消息过来，消息体={}", msgBean.toString());
         log.info("原本将被延迟消费的消息被直接消费，不再被延迟消息");

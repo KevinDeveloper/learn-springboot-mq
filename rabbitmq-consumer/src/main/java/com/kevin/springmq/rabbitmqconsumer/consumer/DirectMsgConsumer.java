@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@RabbitListener(queues = "testmq.msg.direct.queue")
 public class DirectMsgConsumer {
+    @RabbitListener(queues = "testmq.msg.direct.queue")
     @RabbitHandler
     public void execute(String msgBean) {
         log.info("DirectMsgConsumer 有消息过来，消息体={}", msgBean.toString());

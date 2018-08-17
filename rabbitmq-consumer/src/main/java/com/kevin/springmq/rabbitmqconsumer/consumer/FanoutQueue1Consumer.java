@@ -13,9 +13,11 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@RabbitListener(queues = "testmq.msg.fanout.queue_1")
+
 public class FanoutQueue1Consumer {
+
     @RabbitHandler
+    @RabbitListener(queues = "testmq.msg.fanout.queue_1")
     public void execute(String msgBean) {
         log.info("FanoutQueue1Consumer 有消息过来，消息体={}", msgBean.toString());
 

@@ -13,10 +13,11 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@RabbitListener(queues = "testmessage.center.create")
+
 public class TTLMsgConsumer {
 
     @RabbitHandler
+    @RabbitListener(queues = "testmessage.center.create")
     public void execute(String msgBean) {
         log.info("TTLMsgConsumer 有消息过来，消息体={}", msgBean.toString());
 
