@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-
 public class FanoutQueue1Consumer {
 
     @RabbitHandler
